@@ -20,10 +20,6 @@ const config = { fps: 20, qrbox: { width: 250  , height: 300 } };
 // If you want to prefer front camera
 html5QrCode.start({ facingMode: "user" }, config, qrCodeSuccessCallback);
 
-
-
-
-
 function onScanSuccess(decodedText, decodedResult) {
     // Handle on success condition with the decoded text or result.
 
@@ -32,12 +28,31 @@ function onScanSuccess(decodedText, decodedResult) {
    
     // ^ this will stop the scanner (video feed) and clear the scan area.
 }
+const html5QrCodeFile = new Html5Qrcode(/* element id */ "reader-file");
+// File based scanning
+const fileinput = document.getElementById('qr-input-file');
+fileinput.addEventListener('change', e => {
+  if (e.target.files.length == 0) {
+    // No file selected, ignore 
+    return;
+  }
 
+  const imageFile = e.target.files[0];
+  // Scan QR Code
+  html5QrCodeFile.scanFile(imageFile, true)
+  .then(decodedText => {
+    // success, use decodedText
+    console.log(decodedText);
+  })
+  .catch(err => {
+    // failure, handle it.
+    console.log(`Error scanning file. Reason: ${err}`)
+  });
+});
 function onScanError(errorMessage) {
     console.log(errorMessage)
 }
   
-
 function copyText() {
     /* Get the text field */
     var copyText = document.getElementById("result-text");

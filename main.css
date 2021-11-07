@@ -18,9 +18,9 @@ body {
 }
 .result-box {
     padding: 20px;  
-    display: flex;
+    display: block;
     align-items:center;
-    
+    justify-content:space-around ;
 }
 button {
     margin-left: 10px;
@@ -31,16 +31,14 @@ button {
     border-style: hidden;
     background-color: rgb(170, 164, 164);
 }
-
 #result-text {
     max-width: 150%;
-    width: 500px;
+    width: 450px;
     height: 30px;
     cursor: pointer;
     background-color: ghostwhite;
     border: white;
-    border-radius: 8px;
-    
+    border-radius: 8px; 
 }
 
 #result-text:focus {
